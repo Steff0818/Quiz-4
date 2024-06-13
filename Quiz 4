@@ -1,0 +1,54 @@
+# Carga de paquetes
+library(tidyverse)
+install.packages(datos)
+library(datos)
+
+# Gr�fico pregunta 1
+
+# Analice las siguientes afirmaciones y responda las preguntas.
+# 
+# i)  El gr�fico usado es estad�sticamente v�lido.
+# ii) El c�digo no debe de modificarse.
+# 
+# a. i y ii son verdaderos.
+# b. i es verdadero y ii falso.
+# c. i es falso y ii verdarero.
+# d. Ninguna de las anteriores es correcta.
+
+ggplot(data = diamantes) +
+  geom_bar(mapping = aes(x = corte))
+
+# Gr�fico pregunta 2
+
+# �En qu� valores para la variable "y" se encuentran los valores extremos? Responda
+# esta pregunta usando el gr�fico. Modifique el script de forma que se puedan visualizar
+
+ggplot(diamantes) + 
+  geom_histogram(mapping = aes(x = y), binwidth = 0.5) +
+  ylim(c(0,15))
+
+# C�digo pregunta 3
+
+# Filtre los datos de forma que se puedan apreciar los extremos.
+# �C�al es el precio de las observaciones que son extremos?
+
+inusual <- diamantes %>% 
+  filter(y <  | y > ) %>% # Borrar los valores
+  select(precio, x, y, z) %>%
+  arrange(y)
+inusual
+print(inusual)
+# Gr�fico pregunta 4
+
+# Determine si las siguientes son falsas o verdaderas.
+# 
+# i.  Los diagramas de caja est�n ordenados seg�n el valor del percentil 50.
+# ii. Seg�n el rango intercuartil, el grupo "pickup" es igual al "subcompacto"
+# 
+# a. i y ii son falsos.
+# b. i es verdadero y ii es falso.
+# c. i y ii son verdaderos.
+# d. Todas las anteriores son incorrectas.
+
+ggplot(data = millas) +
+  geom_boxplot(mapping = aes(x = reorder(clase, autopista, FUN = median), y = autopista))
